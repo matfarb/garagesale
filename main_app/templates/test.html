@@ -1,0 +1,8 @@
+<form method="post" action="test/">
+  {% csrf_token %}
+
+  {{product_form.as_p}}
+
+  <input type="submit" class="btn" value="Add Product">
+
+</form>
