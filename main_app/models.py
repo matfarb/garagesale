@@ -22,4 +22,3 @@ class ProductPhoto(models.Model):
 
   def __str__(self):
     return f"Photo for product_id: {self.product_id} @{self.url}"
-
