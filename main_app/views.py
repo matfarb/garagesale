@@ -15,3 +15,8 @@ class ProductCreate(CreateView):
   model = Product
   fields = '__all__'
 
+  def form_valid(self, form):
+      form.instance.user = self.request.user 
+      return super().form_valid(form)
+
+  success_url = '/inventory/'
