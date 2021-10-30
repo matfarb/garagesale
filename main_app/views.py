@@ -34,6 +34,7 @@ def signup(request):
       return redirect('inventory')
     else:
       error_message = 'Invalid sign up - try again'
-      form = UserCreationForm()
-      context = {'form': form, 'error_message': error_message}
-      return render(request, 'registration/signup.html', context)
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'registration/signup.html', context)
+
