@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class='center'>{{ product.title }}</h1>
+
+
+  <div class="card">
+        <div class="card-content">
+            <p>Description: {{ product.description }}</p>
+            <p>Price: {{ product.price }}</p>
+            <p>Quantity: {{ product.quantity }}</p>
+            <p>For sale: {{ product.for_sale }}</p>
+        </div>
+  </div>
+
+<a href="{% url 'product_create' %}">Edit</a>
+
+{% endblock %}
