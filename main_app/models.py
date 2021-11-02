@@ -1,6 +1,12 @@
 from django.db import models
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+from multiselectfield import MultiSelectField
+# pip install django-multiselectfield
 
 class Product(models.Model):
     title = models.CharField(max_length=50)
@@ -23,3 +29,18 @@ class ProductPhoto(models.Model):
 
   def __str__(self):
     return f"Photo for product_id: {self.product_id} @{self.url}"
+
+class Profile(models.Model):
+    COLOR_CHOICES = [
+        ("blue", "Blue"),
+    ]
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(max_length=500, blank=True)
+    favorite_color = models.CharField(max_length=50, blank=True, default="blue")
+
+    def __str__(self):
+        return str(self.user)
+    
+    def get_absolute_url(self):
+        return reverse('profile')
