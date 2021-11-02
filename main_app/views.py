@@ -27,7 +27,7 @@ def products_detail(request, product_id):
 
 class ProductCreate(CreateView):
   model = Product
-  fields = '__all__'
+  fields = ['title', 'description', 'price', 'quantity', 'user']
 
   def form_valid(self, form):
       form.instance.user = self.request.user 
@@ -48,7 +48,6 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
-
 
 def profile(request):
   print(request.user.id)
