@@ -5,22 +5,35 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import boto3
-from .models import Product, ProductPhoto
+from .models import Product, Profile, ProductPhoto
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls.base import reverse
+from django.views.generic.edit import CreateView, UpdateView
 
 S3_BASE_URL = 'https://s3.ca-central-1.amazonaws.com/'
 BUCKET = 'garagesaled'
 
+
 def home(request):
   return render(request, 'home.html')
+
+def marketplace(request):
+  products = Product.objects.all()
+  return render(request, 'products/marketplace.html', { 'products': products})
 
 def inventory(request):
   products = Product.objects.filter(user=request.user)
   return render(request, 'products/inventory.html', { 'products': products})
 
+def products_detail(request, product_id):
+  product = Product.objects.get(id=product_id)
+  return render(request, 'products/detail.html', { 
+    'product': product
+  })
+
 class ProductCreate(CreateView):
   model = Product
-  fields = '__all__'
+  fields = ['title', 'description', 'price', 'quantity']
 
   def form_valid(self, form):
       form.instance.user = self.request.user 
@@ -61,9 +74,37 @@ def signup(request):
 
 class ProductUpdate(LoginRequiredMixin, UpdateView):
   model = Product
-  fields = ['title', 'description', 'price', 'quantity', 'for sale']
+  fields = ['title', 'description', 'price', 'quantity']
 
 class ProductDelete(LoginRequiredMixin, DeleteView):
   model = Product
   success_url = '/inventory/'
+
+def profile(request):
+  print(request.user.id)
+  p = Profile.objects.filter(user_id=request.user.id)
+  if len(p) > 0:
+    print("USER PROFILE FOUND")
+    return render(request, 'users/index.html')
+  else:
+    print("USER PROFILE NOT FOUND")
+    return render(request, 'users/add_profile.html')
+
+
+class ProfileCreate(CreateView):
+    model = Profile
+    fields = ['bio', 'favorite_color']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user 
+        return super().form_valid(form)
+
+    success_url = '/profile/'
+
+class ProfileUpdate(UpdateView):
+  model = Profile
+  fields = ['bio', 'favorite_color']
+
+
+
 

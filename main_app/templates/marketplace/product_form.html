@@ -1,0 +1,23 @@
+{% if object %}
+    <h1>Edit <span class="blue-text lighten-2">{{object.name}}</span></h1>
+{% else %}
+    <h1>Add Product</h1>
+{% endif %}
+    <form action="" method="post" id="product_id">
+    {% csrf_token %}
+        <table class="penguin-form">
+        {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit!" class="btn blue lighten-3">
+    </form>
+    {% for photo in product.photo_set.all %}
+      <img class="responsive-img card-panel" src="{{photo.url}}">
+    {% empty %}
+      <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+    {% endfor %}
+    <form action="{% url 'photo_products' product.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+      {% csrf_token %}
+      <input type="file" name="photo-file">
+      <br><br>
+      <input type="submit" class="btn" value="Upload Photo">
+    </form>
