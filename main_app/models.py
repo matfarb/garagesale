@@ -5,9 +5,6 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from multiselectfield import MultiSelectField
-# pip install django-multiselectfield
-
 class Product(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)    
     title = models.CharField(max_length=50)
@@ -30,7 +27,8 @@ class ProductPhoto(models.Model):
 
 class Profile(models.Model):
     COLOR_CHOICES = [
-        ("blue", "Blue"),
+        ("blue", "Blue"), 
+        ("green", "Green"),
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
