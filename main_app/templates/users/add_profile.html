@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Add Profile</h1>
+
+{{ user.username }}
+
+<a href="{% url 'profile_create' %}">Add Form</a>
+
+{% endblock %}

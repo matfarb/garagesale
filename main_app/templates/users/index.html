@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>User Page</h1>
+
+<div>
+  {{ user.username }}
+</div>
+
+<div>
+  <br>Bio - <br>
+  {{ user.profile.bio }} 
+  
+  <br>Favorite Color - <br>
+  {{ user.profile.favorite_color }} 
+
+  <br><br>
+  <a href="{% url 'profile_update' user.profile.id %}">Update</a>
+
+</div>
+
+{% endblock %}
