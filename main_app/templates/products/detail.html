@@ -11,8 +11,9 @@
             <p>Quantity: {{ product.quantity }}</p>
             <p>For sale: {{ product.for_sale }}</p>
         </div>
+        <div class="card-action">
+            <a class="green-text lighten-3" href="{% url 'products_update' product.id %}">Edit</a>
+        </div>
   </div>
-
-<a href="{% url 'product_create' %}">Edit</a>
 
 {% endblock %}

@@ -35,6 +35,10 @@ class ProductCreate(CreateView):
 
   success_url = '/inventory/'
 
+class ProductUpdate(UpdateView):
+  model = Product
+  fields = ['description', 'price', 'quantity']
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':
