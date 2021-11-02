@@ -20,6 +20,7 @@
   <input type="submit" value="Submit!" class="btn green lighten-3">
 </form>
 
+
 {% for photo in product.photo_set.all %}
       <img class="responsive-img card-panel" src="{{photo.url}}">
     {% empty %}

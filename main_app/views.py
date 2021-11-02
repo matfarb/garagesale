@@ -33,7 +33,7 @@ def products_detail(request, product_id):
 
 class ProductCreate(CreateView):
   model = Product
-  fields = ['title', 'description', 'price', 'quantity']
+  fields = ['title', 'description', 'price', 'quantity', 'user']
 
   def form_valid(self, form):
       form.instance.user = self.request.user 
@@ -56,7 +56,6 @@ def photo_products(request, product_id):
     except:
       print('An error occurred uploading file to S3')
   return redirect('detail', product_id=product_id)
-
 
 def signup(request):
   error_message = ''
