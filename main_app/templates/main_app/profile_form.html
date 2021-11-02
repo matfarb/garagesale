@@ -8,21 +8,9 @@
   <!-- Django requires the following for security purposes -->
   {% csrf_token %}
   {{ form.as_p }}
-  <input type="submit" value="Submit" class="btn green lighten-3">
+  <input type="submit" value="Submit" class="btn">
 </form>
 
 
 
 {% endblock %}
-
-{% for photo in product.photo_set.all %}
-      <img class="responsive-img card-panel" src="{{photo.url}}">
-    {% empty %}
-      <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-    {% endfor %}
-    <form action="{% url 'photo_products' product.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
-      {% csrf_token %}
-      <input type="file" name="photo-file">
-      <br><br>
-      <input type="submit" class="btn" value="Upload Photo">
-    </form>
