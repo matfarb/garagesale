@@ -1,22 +1,13 @@
-<style>
-    .container form table tr td select#id_user{
-    display: block !important;
-}
 </style>
 {% extends 'base.html' %}
 {% block content %}
 
-{% if object %}
-    <h1>Edit <span class="green-text lighten-3">{{object.title}}</span></h1>
-{% else %}
-    <h1>Add Object</h1>
-{% endif %}
-<form action="" method="post"></form>
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit!" class="btn green lighten-3">
-  </form>
+<h1>Add Object<h1>
+
+<form action="" method="post" id="product-form">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Submit" class="btn">
+</form>
 
 {% endblock %}
