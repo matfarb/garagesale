@@ -28,7 +28,7 @@ class ProductCreate(CreateView):
 
   success_url = '/inventory/'
 
-def add_photo_products(request, product_id):
+def photo_products(request, product_id):
   photo_file = request.FILES.get('photo-file', None)
 
   if photo_file:
@@ -43,6 +43,7 @@ def add_photo_products(request, product_id):
     except:
       print('An error occurred uploading file to S3')
   return redirect('detail', product_id=product_id)
+
 
 def signup(request):
   error_message = ''
