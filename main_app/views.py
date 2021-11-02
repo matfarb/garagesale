@@ -3,9 +3,10 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.urls.base import reverse
 
-from .models import Product
-from django.views.generic.edit import CreateView
+from .models import Product, Profile
+from django.views.generic.edit import CreateView, UpdateView
 
 def home(request):
   return render(request, 'home.html')
@@ -47,3 +48,33 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
+
+def profile(request):
+  print(request.user.id)
+  p = Profile.objects.filter(user_id=request.user.id)
+  if len(p) > 0:
+    print("USER PROFILE FOUND")
+    return render(request, 'users/index.html')
+  else:
+    print("USER PROFILE NOT FOUND")
+    return render(request, 'users/add_profile.html')
+
+
+class ProfileCreate(CreateView):
+    model = Profile
+    fields = ['bio', 'favorite_color']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user 
+        return super().form_valid(form)
+
+    success_url = '/profile/'
+
+class ProfileUpdate(UpdateView):
+  model = Profile
+  fields = ['bio', 'favorite_color']
+
+
+
+
