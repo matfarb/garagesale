@@ -1,0 +1,18 @@
+<style>
+  .container form table tr td select#id_for_sale{
+  display: block !important;
+}
+</style>
+{% extends 'base.html' %}
+{% block content %}
+
+{{ user }}
+
+<form action="" method="post" id="product-form">
+  <!-- Django requires the following for security purposes -->
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Submit" class="btn">
+</form>
+
+{% endblock %}
