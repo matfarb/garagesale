@@ -78,14 +78,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'garagesale',
-<<<<<<< HEAD
         'USER': 'postgres',
         'PASSWORD': 'Boombon1!',
         
-=======
-        'USER': 'medxman',
-        'PASSWORD': '1234',
->>>>>>> 9c21d069a5d3076271605dd34d9632c91353ad39
     }
 }
 
