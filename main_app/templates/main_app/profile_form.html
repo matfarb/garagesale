@@ -1,5 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
+<style>
+  .color-choice {
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .color-container {
+    display: flex;
+    justify-content: start;
+    padding: 10px 0px;
+  }
+  .input-field {
+    background-color: aliceblue;
+  }
+  .purple {background-color: blueviolet;}
+  .red {background-color: red;}
+  .blue {background-color: blue;}
+  .green {background-color: green;}
+  .pink {background-color: pink;}
+  .yellow {background-color: yellow;}
+</style>
 
 <h1>Profile Create Page</h1>
 
@@ -8,9 +32,42 @@
   <!-- Django requires the following for security purposes -->
   {% csrf_token %}
   {{ form.as_p }}
-  <input type="submit" value="Submit" class="btn">
+  <div class="color-container">
+    <div class="red color-choice">Red</div>
+    <div class="blue color-choice">Blue</div>
+    <div class="green color-choice">Green</div>
+    <div class="yellow color-choice">Yellow</div>
+    <div class="pink color-choice">Pink</div>
+    <div class="purple color-choice">Purple</div>
+  </div>
+
+  <input type="submit" value="Submit" class="btn {{user.profile.favorite_color}} lighten-3">
 </form>
 
+<script defer>
+  const formElems = {
+    form: document.getElementById('profile-form'),
+    bio: document.getElementById('id_bio'),
+    favorite_color: document.getElementById('id_favorite_color'),
+    color_choices: document.querySelectorAll('.color-choice')
+  }
 
+  console.log(formElems.color_choices)
+  for (color of formElems.color_choices) {
+    color.addEventListener('click', (e) => {
+      console.log(e.target.innerText)
+      formElems.favorite_color.value = e.target.innerText.toLowerCase()
+      console.log(formElems.favorite_color.value)
+    })
+  }
+
+  console.log(formElems.favorite_color.value)
+  formElems.favorite_color.readOnly = true;
+  formElems.favorite_color.classList.add('input-field');
+
+
+
+</script>
 
 {% endblock %}
+

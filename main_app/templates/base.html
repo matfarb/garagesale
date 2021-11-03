@@ -14,7 +14,7 @@
 <body>
   <header class="navbar-fixed">
     <nav>
-      <div class="nav-wrapper green lighten-3">
+      <div class="nav-wrapper {{user.profile.favorite_color}} lighten-3">
         <ul>
           <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Digital Garage Sale</a></li>
         </ul>
@@ -36,7 +36,7 @@
     {% block content %}
     {% endblock %}
   </main>
-  <footer class="page-footer green lighten-3">
+  <footer class="page-footer {{user.profile.favorite_color}} lighten-3">
     <div class="right black-text">All Rights Reserved, &copy; 2021 Digital Garage Sale &nbsp;</div>
   </footer>
 </body>
