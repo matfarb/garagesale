@@ -3,10 +3,19 @@
 
 <h1 class='center'>{{ product.title }}</h1>
 
-{{ user.username }}
-
   <div class="card">
         <div class="card-content">
+            {% for photo in product.photo_set.all %}
+              <img class="right responsive-img green-text lighten-3" src="{{photo.url}}">
+            {% empty %}
+              <div class="right center-align green-text lighten-3">No Photos Uploaded</div>
+            {% endfor %}
+            <form action="{% url 'photo_products' product.id %}" enctype="multipart/form-data" method="POST" class="right">
+              {% csrf_token %}
+              <input type="file" name="photo-file">
+              <br><br>
+              <input type="submit" class="btn green lighten-3" value="Upload Photo">
+            </form>
             <p>Description: {{ product.description }}</p>
             <p>Price: ${{ product.price }}</p>
             <p>Quantity: {{ product.quantity }}</p>
