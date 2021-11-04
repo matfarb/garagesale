@@ -48,8 +48,6 @@ class ProductUpdate(UpdateView):
 class ProductDelete( DeleteView):
   model = Product
   success_url = '/inventory/'
-  
-  slug_field = 'product_slug'
 
 
 def signup(request):

@@ -4,23 +4,24 @@
 <h1 class="center">Marketplace</h1>
 
 {% for product in products %}
-  <div class="card">
-        <div class="card-content">
+  <div class="card" style="height: 300px">
+        <div class="card-content" style="height: 245px">
             <span class="card-title">{{ product.title }}</span>
-            {% for photo in product.photo_set.all %}
-                <img class="right responsive-img green-text lighten-3" src="{{photo.url}}">
+            {% for photo in product.productphoto_set.all %}
+                <img class="right responsive-img green-text lighten-3" style="width: auto; height: 175px;" src="{{photo.url}}">
             {% empty %}
                 <div class="right center-align green-text lighten-3">No Photos Uploaded</div>
             {% endfor %}
             <p>Description: {{ product.description }}</p>
             <p>Price: ${{ product.price }}</p>
             <p>Quantity: {{ product.quantity }}</p>
-            <p>For sale: {{ product.for_sale }}</p>
-              
-            <div class="card-action">
-                <a class="green-text lighten-3" href="{% url 'detail' product.id %}">Details</a>
+        </div>
+        <div class="card-action" style="height: auto">
+            {% if product.quantity > 0 %}
                 <a class="green-text lighten-3" href="">Buy</a>
-            </div>
+            {% else %}
+                <span class="red-text darken-3">Sold Out</span>
+            {% endif %}
         </div>
   </div>
 {% endfor %}
