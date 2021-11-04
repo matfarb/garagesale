@@ -3,18 +3,30 @@
 
 <h1 class='center'>{{ product.title }}</h1>
 
-{{ user.username }}
-
-  <div class="card">
-        <div class="card-content">
+  <div class="card" style="height: 300px">
+        <div class="card-content" style="height: 245px">
+            {% for photo in product.productphoto_set.all %}
+              <img class="right responsive-img green-text lighten-3" style="width: auto; height: 175px;" src="{{photo.url}}">
+            {% empty %}
+              <div class="right center-align green-text lighten-3">
+                No Photos Uploaded
+              </div>
+              <form action="{% url 'photo_products' product.id %}" enctype="multipart/form-data" method="POST" class="right">
+                {% csrf_token %}
+                <input type="file" name="photo-file">
+                <br><br>
+                <input type="submit" class="btn green lighten-3" value="Upload Photo">
+              </form>
+            {% endfor %}
             <p>Description: {{ product.description }}</p>
             <p>Price: ${{ product.price }}</p>
             <p>Quantity: {{ product.quantity }}</p>
-            <p>For sale: {{ product.for_sale }}</p>
         </div>
-        <div class="card-action">
+        <div class="card-action" style="height: auto">
             <a class="green-text lighten-3" href="{% url 'products_update' product.id %}">Edit</a>
-        </div>
+            <a class= "green-text lighten-3" href="{% url 'product_delete' product.id %}">Delete</a>
+          </div>
+        
   </div>
 
 {% endblock %}

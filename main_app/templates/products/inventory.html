@@ -8,24 +8,16 @@
     <a href="{% url 'detail' product.id %}">
         <div class="card-content">
             <span class="card-title">{{ product.title }}</span>
-            {% for photo in product.photo_set.all %}
-              <img class="right responsive-img green-text lighten-3" src="{{photo.url}}">
-            {% empty %}
-              <div class="right center-align green-text lighten-3">No Photos Uploaded</div>
-            {% endfor %}
-            <form action="" enctype="multipart/form-data" method="POST" class="right">
-              {% csrf_token %}
-              <input type="file" name="photo-file">
-              <br><br>
-              <input type="submit" class="btn green lighten-3" value="Upload Photo">
-            </form>
             <p>Description: {{ product.description }}</p>
             <p>Price: ${{ product.price }}</p>
             <p>Quantity: {{ product.quantity }}</p>
-            <p>For sale: {{ product.for_sale }}</p>
+
         </div>
     </a>
   </div>
+
+  
+
 {% endfor %}
 
 <a class="waves-effect waves-light btn green lighten-3" href="{% url 'product_create' %}">Add a Product</a>
