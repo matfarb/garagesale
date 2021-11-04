@@ -5,7 +5,7 @@
 
   <div class="card">
         <div class="card-content">
-            {% for photo in product.photo_set.all %}
+            {% for photo in product.productphoto_set.all %}
               <img class="right responsive-img green-text lighten-3" src="{{photo.url}}">
             {% empty %}
               <div class="right center-align green-text lighten-3">No Photos Uploaded</div>
