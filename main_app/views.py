@@ -11,7 +11,7 @@ from .models import Product, Profile, ProductPhoto
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 S3_BASE_URL = 'https://s3.ca-central-1.amazonaws.com/'
-BUCKET = 'penguincollector'
+BUCKET = 'garagesaled'
 
 def home(request):
   return render(request, 'home.html')
@@ -48,6 +48,7 @@ class ProductUpdate(UpdateView):
 class ProductDelete( DeleteView):
   model = Product
   success_url = '/inventory/'
+
 
 def signup(request):
   error_message = ''

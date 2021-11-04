@@ -12,3 +12,8 @@ body {
     padding-top: 0;
     text-align: right;
   }
+
+  .photo {
+    max-height: 10px;
+    max-width: 10px;
+  }
