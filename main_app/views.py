@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls.base import reverse
 
 from .models import Product, Profile, ProductPhoto
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 S3_BASE_URL = 'https://s3.ca-central-1.amazonaws.com/'
 BUCKET = 'penguincollector'
@@ -43,6 +43,14 @@ class ProductCreate(CreateView):
 class ProductUpdate(UpdateView):
   model = Product
   fields = ['description', 'price', 'quantity']
+
+
+class ProductDelete( DeleteView):
+  model = Product
+  success_url = '/inventory/'
+  
+  slug_field = 'product_slug'
+
 
 def signup(request):
   error_message = ''

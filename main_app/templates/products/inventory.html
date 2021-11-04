@@ -11,9 +11,13 @@
             <p>Description: {{ product.description }}</p>
             <p>Price: ${{ product.price }}</p>
             <p>Quantity: {{ product.quantity }}</p>
+
         </div>
     </a>
   </div>
+
+  
+
 {% endfor %}
 
 <a class="waves-effect waves-light btn green lighten-3" href="{% url 'product_create' %}">Add a Product</a>
