@@ -4,7 +4,7 @@ ScreenShots:
 [Wireframes & Screenshots](https://github.com/matfarb/garagesale/tree/master/screenshots)
 
 List Of Technologies:
-Python, Django, Amazon AWS, 
+Python, Django, Amazon AWS, Javascript
 
 Deployed App:
 
