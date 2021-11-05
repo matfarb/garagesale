@@ -14,7 +14,7 @@ urlpatterns = [
     path('profile/<int:pk>/update/', views.ProfileUpdate.as_view(), name="profile_update"),
     path('inventory/<int:product_id>', views.products_detail, name='detail'),
     path('inventory/<int:pk>/delete', views.ProductDelete.as_view(), name='product_delete'),
-    path('inventory/<int:product_id>/deletephoto/', views.PhotoDelete, name='photo_delete'),
+    # path('inventory/<int:product_id>/deletephoto/', views.PhotoDelete, name='photo_delete'),
 
     path('inventory/<int:product_id>/photo_products', views.photo_products, name='photo_products'),
     path('accounts/', include('django.contrib.auth.urls')),

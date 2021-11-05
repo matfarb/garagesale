@@ -26,6 +26,7 @@ def inventory(request):
 
 def products_detail(request, product_id):
   product = Product.objects.get(id=product_id)
+
   return render(request, 'products/detail.html', { 
     'product': product
   })
@@ -48,19 +49,6 @@ class ProductUpdate(UpdateView):
 class ProductDelete( DeleteView):
   model = Product
   success_url = '/inventory/'
-
-
-class PhotoDelete(DeleteView):
-  Model = ProductPhoto
-  success_url = '/inventory/'
-
-  # def get_queryset(self):
-
-# def PhotoDelete(request, product_id, productphoto_id):
-#   Product.objects.get(id=product_id).productphotos.remove(productphoto_id)
-#   return redirect('detail', product_id=product_id) 
-
-# PhotoDelete().PhotoDeletes()
 
 
 def signup(request):
