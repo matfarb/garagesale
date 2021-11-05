@@ -8,17 +8,18 @@
         <div class="card-content" style="height: 245px">
             <span class="card-title">{{ product.title }}</span>
             {% for photo in product.productphoto_set.all %}
-                <img class="right responsive-img green-text lighten-3" style="width: auto; height: 175px;" src="{{photo.url}}">
+                <img class="right responsive-img {{user.profile.favorite_color}}-text lighten-3" style="width: auto; height: 175px;" src="{{photo.url}}">
             {% empty %}
-                <div class="right center-align green-text lighten-3">No Photos Uploaded</div>
+                <div class="right center-align {{user.profile.favorite_color}}-text lighten-3">No Photos Uploaded</div>
             {% endfor %}
             <p>Description: {{ product.description }}</p>
             <p>Price: ${{ product.price }}</p>
             <p>Quantity: {{ product.quantity }}</p>
+            <p>Owner: {{ product.user }}</p>
         </div>
         <div class="card-action" style="height: auto">
             {% if product.quantity > 0 %}
-                <a class="green-text lighten-3" href="{% url 'product_update'  %}">Buy</a>
+                <a class="{{user.profile.favorite_color}}-text lighten-3" href="">Buy</a>
             {% else %}
                 <span class="red-text darken-3">Sold Out</span>
             {% endif %}

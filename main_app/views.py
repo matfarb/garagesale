@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import boto3
 from django.contrib.auth.forms import UserCreationForm
-from django.urls.base import reverse
 
 from .models import Product, Profile, ProductPhoto
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -20,17 +20,19 @@ def marketplace(request):
   products = Product.objects.all()
   return render(request, 'products/marketplace.html', { 'products': products})
 
+@login_required
 def inventory(request):
   products = Product.objects.filter(user=request.user)
   return render(request, 'products/inventory.html', { 'products': products})
 
+@login_required
 def products_detail(request, product_id):
   product = Product.objects.get(id=product_id)
   return render(request, 'products/detail.html', { 
-    'product': product
+    'product': product,
   })
 
-class ProductCreate(CreateView):
+class ProductCreate(CreateView, LoginRequiredMixin):
   model = Product
   fields = ['title', 'description', 'price', 'quantity', 'user']
 
@@ -40,12 +42,12 @@ class ProductCreate(CreateView):
 
   success_url = '/inventory/'
 
-class ProductUpdate(UpdateView):
+class ProductUpdate(UpdateView, LoginRequiredMixin):
   model = Product
   fields = ['description', 'price', 'quantity']
 
 
-class ProductDelete( DeleteView):
+class ProductDelete(DeleteView, LoginRequiredMixin):
   model = Product
   success_url = '/inventory/'
 
@@ -63,6 +65,7 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
+@login_required
 def profile(request):
   print(request.user.id)
   p = Profile.objects.filter(user_id=request.user.id)
@@ -74,7 +77,7 @@ def profile(request):
     return render(request, 'users/add_profile.html')
 
 
-class ProfileCreate(CreateView):
+class ProfileCreate(CreateView, LoginRequiredMixin):
     model = Profile
     fields = ['bio', 'favorite_color']
 
@@ -84,10 +87,11 @@ class ProfileCreate(CreateView):
 
     success_url = '/profile/'
 
-class ProfileUpdate(UpdateView):
+class ProfileUpdate(UpdateView, LoginRequiredMixin):
   model = Profile
   fields = ['bio', 'favorite_color']
 
+@login_required
 def photo_products(request, product_id):
   photo_file = request.FILES.get('photo-file', None)
   if photo_file:
