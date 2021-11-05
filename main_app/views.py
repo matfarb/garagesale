@@ -44,6 +44,10 @@ class ProductUpdate(UpdateView):
   model = Product
   fields = ['description', 'price', 'quantity']
 
+class ProductBuy(UpdateView):
+  model = Product;
+  fields = ['description', 'price', 'quantity']
+  success_url = '/marketplace/'
 
 class ProductDelete( DeleteView):
   model = Product

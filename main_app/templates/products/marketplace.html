@@ -4,6 +4,7 @@
 <h1 class="center">Marketplace</h1>
 
 {% for product in products %}
+
   <div class="card" style="height: 300px">
         <div class="card-content" style="height: 245px">
             <span class="card-title">{{ product.title }}</span>
@@ -15,10 +16,13 @@
             <p>Description: {{ product.description }}</p>
             <p>Price: ${{ product.price }}</p>
             <p>Quantity: {{ product.quantity }}</p>
+            <p>User: {{ product.user }}</p>
         </div>
         <div class="card-action" style="height: auto">
-            {% if product.quantity > 0 %}
-                <a class="green-text lighten-3" href="{% url 'product_update'  %}">Buy</a>
+            {% if user == product.user %}
+                <sapn class="material-icons"></span>
+            {% elif product.quantity > 0 %}
+                <a class="green-text lighten-3" href="{% url 'products_buy' product.id %}">Buy</a>
             {% else %}
                 <span class="red-text darken-3">Sold Out</span>
             {% endif %}
