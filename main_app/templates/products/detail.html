@@ -6,16 +6,16 @@
   <div class="card" style="height: 300px">
         <div class="card-content" style="height: 245px">
             {% for photo in product.productphoto_set.all %}
-              <img class="right responsive-img green-text lighten-3" style="width: auto; height: 175px;" src="{{photo.url}}">
+              <img class="right responsive-img {{user.profile.favorite_color}}-text lighten-3" style="width: auto; height: 175px;" src="{{photo.url}}">
             {% empty %}
-              <div class="right center-align green-text lighten-3">
+              <div class="right center-align {{user.profile.favorite_color}}-text lighten-3">
                 No Photos Uploaded
               </div>
               <form action="{% url 'photo_products' product.id %}" enctype="multipart/form-data" method="POST" class="right">
                 {% csrf_token %}
                 <input type="file" name="photo-file">
                 <br><br>
-                <input type="submit" class="btn green lighten-3" value="Upload Photo">
+                <input type="submit" class="btn {{user.profile.favorite_color}} lighten-3" value="Upload Photo">
               </form>
             {% endfor %}
             <p>Description: {{ product.description }}</p>
@@ -23,9 +23,9 @@
             <p>Quantity: {{ product.quantity }}</p>
         </div>
         <div class="card-action" style="height: auto">
-            <a class="green-text lighten-3" href="{% url 'products_update' product.id %}">Edit</a>
-            <a class= "green-text lighten-3" href="{% url 'product_delete' product.id %}">Delete</a>
-          </div>
+            <a class="{{user.profile.favorite_color}}-text lighten-3" href="{% url 'products_update' product.id %}">Edit</a>
+            <a class= "{{user.profile.favorite_color}}-text lighten-3" href="{% url 'product_delete' product.id %}">Delete</a>
+        </div>
         
   </div>
 
