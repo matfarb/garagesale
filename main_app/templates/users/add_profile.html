@@ -1,10 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<h1>Hi {{ user.username }},</h1>
 
-<h1>Add Profile</h1>
+<div class="row">
+  <div class="col s12 m6">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text"> 
+        <span class="card-title">Create your Profile</span>
+        <p>You have not yet created your profile, please click below to continue to setup.</p>
+      </div>
+      <div class="card-action">
+        <a href="{% url 'profile_create' %}" class="black waves-effect waves-light btn-large"><i class="material-icons left">person_pin</i>Get Started Now</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-{{ user.username }}
 
-<a href="{% url 'profile_create' %}">Add Form</a>
 
 {% endblock %}
