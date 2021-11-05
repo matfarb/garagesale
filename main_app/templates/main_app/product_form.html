@@ -2,12 +2,63 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Add Object<h1>
+{% if user != product.user %}
+  <div id="buy-product">
+
+    <h1>{{ product.title }}</h1>
+
+    <div class="card">
+      <a href="{% url 'detail' product.id %}">
+          <div class="card-content">
+              <h1>Confirm Purchase</h1>
+              <span class="card-title">{{ product.title }}</span>
+              <p>Description: {{ product.description }}</p>
+              <p>Price: ${{ product.price }}</p>
+              <p>Please read our <a target="_blank" href="https://ottawa.ctvnews.ca/garage-sales-allowed-to-open-in-ottawa-as-covid-restrictions-ease-1.5475943">Terms and Conditions</a></p>
+          </div>
+      </a>
+    </div>
+
+  </div>
+  
+{% endif %}
+
 
 <form action="" method="post" id="product-form">
   {% csrf_token %}
   {{ form.as_p }}
-  <input type="submit" value="Submit" class="btn">
+  <input type="submit" value="Submit" class="btn {{user.profile.favorite_color}} lighten-3">
 </form>
+
+
+{% if user != product.user %}
+
+<script>
+  console.log("This is working. ")
+
+  const elems = {
+    buyButton: document.querySelector('.btn'),
+    quantityInput: document.getElementById('id_quantity'),
+    descInput: document.getElementById('id_description'),
+    priceInput: document.getElementById('id_price'),
+    descLabel: document.querySelector('[for="id_description"]'),
+    priceLabel: document.querySelector('[for="id_price"]'),
+    quantityLabel: document.querySelector('[for="id_quantity"]'),
+    buyInfo: document.getElementById('buy-product')
+  }
+
+  elems.buyButton.value = 'Buy';
+  elems.quantityInput.value = elems.quantityInput.value - 1;
+
+  elems.quantityInput.hidden = true;
+  elems.descInput.hidden = true;
+  elems. priceInput.hidden = true;
+  elems.descLabel.hidden = true;
+  elems.priceLabel.hidden = true;
+  elems.quantityLabel.hidden = true;
+</script>
+
+
+{% endif %}
 
 {% endblock %}
