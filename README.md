@@ -1,7 +1,7 @@
 # Digital Garagesale
 
 ScreenShots:
-[]()
+[Wireframes & Screenshots](https://github.com/matfarb/garagesale/tree/master/screenshots)
 
 List Of Technologies:
 Python, Django, Amazon AWS, 
