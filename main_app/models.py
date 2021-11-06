@@ -26,14 +26,11 @@ class ProductPhoto(models.Model):
     return f"Photo for product_id: {self.product_id} @{self.url}"
 
 class Profile(models.Model):
-    COLOR_CHOICES = [
-        ("blue", "Blue"), 
-        ("green", "Green"),
-    ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True)
     favorite_color = models.CharField(max_length=50, blank=True, default="blue")
+    
     ## balance 
 
     def __str__(self):

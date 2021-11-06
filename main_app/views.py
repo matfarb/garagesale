@@ -30,7 +30,7 @@ def products_detail(request, product_id):
   product = Product.objects.get(id=product_id)
 
   return render(request, 'products/detail.html', { 
-    'product': product,
+    'product': product
   })
 
 class ProductCreate(CreateView, LoginRequiredMixin):
