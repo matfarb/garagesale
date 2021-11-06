@@ -7,7 +7,7 @@ List Of Technologies:
 Python, Django, Amazon AWS, Javascript
 
 Deployed App:
-
+[Digital Garagesale](https://digitalgaragesale.herokuapp.com/)
 
 
 User Stories & WireFrames:
