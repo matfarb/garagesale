@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 <style>
   .color-choice {
     width: 50px;
@@ -23,7 +24,14 @@
   .green {background-color: green;}
   .pink {background-color: pink;}
   .yellow {background-color: yellow;}
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
 </style>
+
+
 
 <h1>Profile Create Page</h1>
 
@@ -32,18 +40,23 @@
   {% csrf_token %}
   {{ form.as_p }}
   <div class="color-container">
-    <div class="red color-choice">Red</div>
-    <div class="blue color-choice">Blue</div>
-    <div class="green color-choice">Green</div>
-    <div class="yellow color-choice">Yellow</div>
-    <div class="pink color-choice">Pink</div>
-    <div class="purple color-choice">Purple</div>
+    <div class="red color-choice "><a onclick="M.toast({html: 'Red'})">Red</a></div>
+    <div class="blue color-choice"><a onclick="M.toast({html: 'Blue'})">Blue</a></div>
+    <div class="green color-choice"><a onclick="M.toast({html: 'Green'})">Green</a></div>
+    <div class="yellow color-choice"><a onclick="M.toast({html: 'Yellow'})">Yellow</a></div>
+    <div class="pink color-choice"><a onclick="M.toast({html: 'Pink'})">Pink</a></div>
+    <div class="purple color-choice">  <a onclick="M.toast({html: 'Purple'})">Purple</a></div>
   </div>
 
   <input type="submit" value="Submit" class="btn {{user.profile.favorite_color}} lighten-3">
 </form>
 
 <script defer>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.carousel');
+    var instances = M.Carousel.init(elems, options);
+  });
+
   const formElems = {
     form: document.getElementById('profile-form'),
     bio: document.getElementById('id_bio'),
@@ -64,7 +77,10 @@
   formElems.favorite_color.readOnly = true;
   formElems.favorite_color.classList.add('input-field');
 
-
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.tooltipped');
+    var instances = M.Tooltip.init(elems, options);
+  });
 
 </script>
 

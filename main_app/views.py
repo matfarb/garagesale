@@ -11,7 +11,7 @@ from .models import Product, Profile, ProductPhoto
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 S3_BASE_URL = 'https://s3.ca-central-1.amazonaws.com/'
-BUCKET = 'penguincollector'
+BUCKET = 'garagesaled'
 
 def home(request):
   return render(request, 'home.html')
@@ -28,6 +28,7 @@ def inventory(request):
 @login_required
 def products_detail(request, product_id):
   product = Product.objects.get(id=product_id)
+
   return render(request, 'products/detail.html', { 
     'product': product
   })
