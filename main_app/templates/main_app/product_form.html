@@ -2,13 +2,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% if user != product.user %}
+{% if user != product.user and product %}
   <div id="buy-product">
 
     <h1>{{ product.title }}</h1>
 
     <div class="card">
-      <a href="{% url 'detail' product.id %}">
           <div class="card-content">
               <h1>Confirm Purchase</h1>
               <span class="card-title">{{ product.title }}</span>
@@ -16,7 +15,6 @@
               <p>Price: ${{ product.price }}</p>
               <p>Please read our <a target="_blank" href="https://ottawa.ctvnews.ca/garage-sales-allowed-to-open-in-ottawa-as-covid-restrictions-ease-1.5475943">Terms and Conditions</a></p>
           </div>
-      </a>
     </div>
 
   </div>
@@ -31,7 +29,7 @@
 </form>
 
 
-{% if user != product.user %}
+{% if user != product.user and product %}
 
 <script>
   console.log("This is working. ")

@@ -1,22 +1,19 @@
+
+
+
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>User Page</h1>
+<h1>{{ user.username }}</h1>
 
-<div>
-  {{ user.username }}
-</div>
-
-<div>
-  <br>Bio - <br>
-  {{ user.profile.bio }} 
-  
-  <br>Favorite Color - <br>
-  {{ user.profile.favorite_color }} 
-
-  <br><br>
-  <a href="{% url 'profile_update' user.profile.id %}">Update</a>
-
-</div>
+  <div class="card" style="height: 300px">
+        <div class="card-content" style="height: 245px">
+            <h3>Bio: {{ user.profile.bio }}</h3>
+            <h3>Favourite Colour: <span class="{{ user.profile.favorite_color }}-text lighten-3">{{ user.profile.favorite_color }}</span> </h3>
+        </div>
+        <div class="card-action" style="height: auto">
+            <a class="{{user.profile.favorite_color}}-text lighten-3" href="{% url 'profile_update' user.profile.id %}">Update</a>
+        </div>       
+  </div>
 
 {% endblock %}

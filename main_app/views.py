@@ -29,7 +29,7 @@ def inventory(request):
 def products_detail(request, product_id):
   product = Product.objects.get(id=product_id)
   return render(request, 'products/detail.html', { 
-    'product': product,
+    'product': product
   })
 
 class ProductCreate(CreateView, LoginRequiredMixin):
@@ -47,7 +47,7 @@ class ProductUpdate(UpdateView, LoginRequiredMixin):
   fields = ['description', 'price', 'quantity']
 
 class ProductBuy(UpdateView):
-  model = Product;
+  model = Product
   fields = ['description', 'price', 'quantity']
   success_url = '/marketplace/'
 
