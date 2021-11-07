@@ -48,7 +48,7 @@ class ProductUpdate(UpdateView, LoginRequiredMixin):
   fields = ['description', 'price', 'quantity']
 
 class ProductBuy(UpdateView):
-  model = Product;
+  model = Product
   fields = ['description', 'price', 'quantity']
   success_url = '/marketplace/'
 
